@@ -11,3 +11,5 @@ mlflow
 fastapi
 uvicorn
 joblib
+httpx
+pytest

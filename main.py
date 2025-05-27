@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
-from predict import predict_landmark_class
+from serve.predict import predict_landmark_class
 
 app = FastAPI(title="Hand Landmarks Classification API",)
 

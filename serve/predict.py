@@ -1,4 +1,4 @@
-from utils import model, preprocess_input
+from serve.utils import model, preprocess_input
 from pydantic import BaseModel
 import pandas as pd
 import joblib
