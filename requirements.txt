@@ -8,3 +8,6 @@ seaborn
 pickle-mixin
 lightgbm
 mlflow
+fastapi
+uvicorn
+joblib
