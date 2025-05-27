@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/5e94cb7870784d64ac43c943cd602a1b/artifacts
+deleted_time: 1748349463295
+end_time: 1748349273049
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 5e94cb7870784d64ac43c943cd602a1b
+run_name: bold-hare-957
+run_uuid: 5e94cb7870784d64ac43c943cd602a1b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748349244701
+status: 4
+tags: []
+user_id: omar mahmoud

@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/mahmo/OneDrive/Desktop/ITI/MLOPs/Final%20project/mlruns/480952160519737839/3cb3bcf1a3ff41a188ce99c3951390b9/artifacts
+deleted_time: 1748351647671
+end_time: 1748351620764
+entry_point_name: ''
+experiment_id: '480952160519737839'
+lifecycle_stage: deleted
+run_id: 3cb3bcf1a3ff41a188ce99c3951390b9
+run_name: LGBM_Default_Params
+run_uuid: 3cb3bcf1a3ff41a188ce99c3951390b9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748351620694
+status: 4
+tags: []
+user_id: omar mahmoud
