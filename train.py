@@ -53,7 +53,7 @@ with mlflow.start_run(run_name='Logistic_Regression') as run:
     report = classification_report(y_test, y_pred)
     with open("classification_report.txt", "w") as f:
         f.write(report)
-    # mlflow.log_artifact("classification_report.txt")
+    mlflow.log_artifact("classification_report.txt")
 
     # Save and log confusion matrix plot
     cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
