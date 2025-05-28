@@ -3,7 +3,7 @@ numpy
 # matplotlib
 opencv-python
 mediapipe
-# scikit-learn
+scikit-learn
 # seaborn
 pickle-mixin
 lightgbm

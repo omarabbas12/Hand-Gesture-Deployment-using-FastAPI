@@ -5,7 +5,9 @@ import pandas as pd
 from transformer import LandmarkNormalizer, map_labels
 
 # Load model
-model = joblib.load("model.pkl")
+import os
+model = joblib.load(os.path.join(os.path.dirname(__file__), "..", "Model.pkl"))
+
 
 # Create transformer instance
 normalizer = LandmarkNormalizer()
