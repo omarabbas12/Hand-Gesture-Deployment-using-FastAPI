@@ -64,7 +64,7 @@ with mlflow.start_run(run_name='Logistic_Regression') as run:
     plt.ylabel("True")
     plt.tight_layout()
     plt.savefig("confusion_matrix.png")
-    # mlflow.log_artifact("confusion_matrix.png")
+    mlflow.log_artifact("confusion_matrix.png")
 
     # print(f"Accuracy: {acc}")
     # print(report)
