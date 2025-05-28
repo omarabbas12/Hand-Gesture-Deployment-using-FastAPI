@@ -2,8 +2,13 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 from serve.predict import predict_landmark_class
+from prometheus_fastapi_instrumentator import Instrumentator
+# from prometheus_client import Counter, Histogram
+
 
 app = FastAPI(title="Hand Landmarks Classification API",)
+Instrumentator().instrument(app).expose(app)
+
 
 # Define input schema
 class LandmarkInput(BaseModel):
