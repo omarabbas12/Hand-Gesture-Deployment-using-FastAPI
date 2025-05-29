@@ -1,0 +1,20 @@
+1 - Metric name: model_inference_duration_seconds
+
+
+Reasoning:
+Measuring the time it takes to generate predictions is critical to understanding the model’s real-time performance. Spikes in inference time can indicate model drift, resource saturation, or inefficient architecture. This is especially important for user-facing applications where responsiveness impacts user experience.
+
+2 - Data-Related Metric: Input Image Size Distribution
+Metric name: input_image_size_bytes
+
+
+Reasoning:
+Tracking the distribution of incoming image sizes helps detect unexpected data. For example, if the model is trained on 224x224 images, but suddenly receives significantly larger or smaller inputs, that may lead to degraded accuracy or even runtime errors. This metric supports both debugging and early detection of input schema drift.
+
+3 - Server-Related Metric: API Request Count
+Metric name: http_requests_total
+
+Type: Counter (from FastAPI/Prometheus middleware)
+
+Reasoning:
+Keeping track of the number and type of HTTP requests to the API helps monitor server load and usage patterns. It’s essential for ensuring availability, identifying abuse (e.g. DDoS or bot traffic), and scaling decisions.
