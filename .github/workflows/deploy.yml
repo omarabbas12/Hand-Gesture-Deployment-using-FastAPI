@@ -39,29 +39,12 @@ jobs:
         debug: true
         script: |
           echo "SSH Connection successful"
-
-          # Install git if not present
-          if ! command -v git &> /dev/null; then
-            echo "Git not found. Installing..."
-            sudo yum install -y git
-          fi
-
-          # Stop and remove any existing containers/images
           docker stop hand-gesture-app || true
           docker rm hand-gesture-app || true
           docker rmi hand-gesture-app || true
-
-          # Clone repo if not exists
-          if [ ! -d ~/hand-gesture-repo ]; then
-            git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git ~/hand-gesture-repo
-          fi
-
-          # Enter repo and pull latest changes
+          cd ~/hand-gesture-repo || git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git ~/hand-gesture-repo
           cd ~/hand-gesture-repo
-          git pull origin main
-
-          # Build and run the Docker container
+          git pull origin Production
           docker build -t hand-gesture-app .
           docker run -d --name hand-gesture-app -p 8000:8000 hand-gesture-app
-
 
