@@ -30,21 +30,21 @@ jobs:
     - name:  Build Docker image
       run: docker build -t hand-gesture-app .
 
-    - name:  Deploy to EC2
+    - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ec2-user
         key: ${{ secrets.EC2_KEY }}
+        debug: true
         script: |
-          docker stop hand-gesture-deploy || true
+          echo "SSH Connection successful"
+          docker stop hand-gesture-app || true
           docker rm hand-gesture-app || true
           docker rmi hand-gesture-app || true
-
           cd ~/hand-gesture-repo || git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git ~/hand-gesture-repo
-
           cd ~/hand-gesture-repo
           git pull origin main
-
           docker build -t hand-gesture-app .
           docker run -d --name hand-gesture-app -p 8000:8000 hand-gesture-app
+
