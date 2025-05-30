@@ -41,7 +41,8 @@ jobs:
           docker rm hand-gesture-app || true
           docker rmi hand-gesture-app || true
 
-          cd ~/hand-gesture-repo || git clone https://github.com/${{ github.repository }}.git ~/hand-gesture-repo
+          cd ~/hand-gesture-repo || git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git ~/hand-gesture-repo
+
           cd ~/hand-gesture-repo
           git pull origin main
 
