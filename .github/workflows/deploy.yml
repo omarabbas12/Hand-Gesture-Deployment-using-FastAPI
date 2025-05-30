@@ -35,7 +35,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd hand-gesture-app
+            cd hand-gesture-deploy
             git pull origin main
             docker compose down
             docker compose up --build -d
