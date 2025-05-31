@@ -1,12 +1,21 @@
-from fastapi import FastAPI
+from fastapi import FastAPI , Request
 from pydantic import BaseModel
 from typing import List
 from serve.predict import predict_landmark_class
 from prometheus_fastapi_instrumentator import Instrumentator
+from fastapi.middleware.cors import CORSMiddleware
+
 # from prometheus_client import Counter, Histogram
 
 
 app = FastAPI(title="Hand Landmarks Classification API",)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or restrict to GitHub Pages domain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 Instrumentator().instrument(app).expose(app)
 
 
@@ -39,9 +48,12 @@ def read_root():
     return {"message": "Welcome to the Hand Landmarks Classification API!"}
 
 @app.post("/predict")
-def predict(input: LandmarkInput):
-    prediction = predict_landmark_class(input)
-    return {"prediction": prediction}
+async def predict(request: Request):
+    data = await request.json()
+    input_tensor = data.get("data")  # should match JS side
+    # Run your ML model prediction here
+    predicted_label = "up"  # Example
+    return {"label": predicted_label}
 
 # Optional: Only needed if you want to run from code instead of terminal
 if __name__ == "__main__":
