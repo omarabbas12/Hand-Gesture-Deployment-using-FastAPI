@@ -48,12 +48,9 @@ def read_root():
     return {"message": "Welcome to the Hand Landmarks Classification API!"}
 
 @app.post("/predict")
-async def predict(request: Request):
-    data = await request.json()
-    input_tensor = data.get("data")  # should match JS side
-    # Run your ML model prediction here
-    predicted_label = "up"  # Example
-    return {"label": predicted_label}
+def predict(input: LandmarkInput):
+    prediction = predict_landmark_class(input)
+    return {"prediction": prediction}
 
 # Optional: Only needed if you want to run from code instead of terminal
 if __name__ == "__main__":
