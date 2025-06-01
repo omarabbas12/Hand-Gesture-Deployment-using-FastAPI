@@ -48,6 +48,8 @@ with mlflow.start_run(run_name='Logistic_Regression') as run:
 
     # Save model
     joblib.dump(model, "model.pkl")
+    mlflow.log_artifact("model.pkl")
+
 
     # Save classification report
     report = classification_report(y_test, y_pred)
@@ -66,5 +68,5 @@ with mlflow.start_run(run_name='Logistic_Regression') as run:
     plt.savefig("confusion_matrix.png")
     mlflow.log_artifact("confusion_matrix.png")
 
-    # print(f"Accuracy: {acc}")
-    # print(report)
+    download_url = mlflow.get_artifact_uri("model.pkl")
+    print(f"Model saved to: {download_url}")

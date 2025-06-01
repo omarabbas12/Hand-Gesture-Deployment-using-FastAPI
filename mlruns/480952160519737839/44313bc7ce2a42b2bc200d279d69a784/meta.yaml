@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/mahmo/OneDrive/Desktop/ITI/MLOPs/Final%20project/mlruns/480952160519737839/44313bc7ce2a42b2bc200d279d69a784/artifacts
+end_time: 1748780140044
+entry_point_name: ''
+experiment_id: '480952160519737839'
+lifecycle_stage: active
+run_id: 44313bc7ce2a42b2bc200d279d69a784
+run_name: Logistic_Regression
+run_uuid: 44313bc7ce2a42b2bc200d279d69a784
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748780133474
+status: 3
+tags: []
+user_id: omar mahmoud

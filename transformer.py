@@ -40,6 +40,7 @@ def map_labels(df):
         'one': 'up',
         'dislike': 'down',
         'three2': 'left',
+        'four': 'left',
         'peace': 'right',
         'two_up': 'right',
         'fist': 'stop',
