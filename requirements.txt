@@ -13,5 +13,5 @@ uvicorn
 joblib
 httpx
 # pytest
-prometheus_fastapi_instrumentator
+# prometheus_fastapi_instrumentator
 pydantic
