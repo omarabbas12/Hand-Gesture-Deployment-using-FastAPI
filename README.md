@@ -1,47 +1,140 @@
-# ML Course Final Project - Gesture Control Game
 
-This project implements a gesture-controlled game using machine learning for gesture recognition. Players can control the game using hand gestures captured through their webcam.
+# ✋ Gesture Control Game
 
-## 🚀 Quick Start
+This project implements a gesture-controlled game powered by a machine learning model trained on the HAGRID dataset. Players control the game using **hand gestures** captured in real-time through their **webcam**. The gestures are classified by a LightGBM model, and mapped to game directions — bringing a touchless, intuitive interaction experience to life.
 
-1. Install the Live Server extension in VS Code:
-   - Open VS Code
-   - Go to Extensions (Ctrl+Shift+X)
-   - Search for "Live Server"
-   - Install the extension by Ritwick Dey
+## 🎯 Project Objective
 
-2. Launch the project:
-   - Right-click on `index.html`
-   - Select "Open with Live Server"
-   - The game should open in your default browser at `http://localhost:5500`
+The objective of this project is to build and deploy a **real-time gesture classification system** that integrates with a simple maze game, allowing players to navigate using predefined hand gestures. The system is optimized for fast predictions and deployed in a production environment using **FastAPI**.
 
-## 📁 Project Structure
+---
 
-- `index.html` - Main game interface
-- `api-call.js` - ML model API integration
-- `cam.js` - Webcam handling and gesture processing
-- `keyboard.js` - Keyboard controls implementation
-- `maze.js` - Maze game logic
-- `mp.js` - Media processing utilities
+## 🚀 Deployment
 
-## 🔧 Important Implementation Note
+✅ The entire system — including the trained model, preprocessing pipeline, and FastAPI server — is deployed on an **AWS EC2 instance**.
 
-In `api-call.js`, there is a TODO section that needs to be implemented:
+📎 **Production API Endpoint**: http://34.227.25.110:8000
 
-```javascript
-// TODO: Call your model's api here
-// and return the predicted label
-// Possible labels: "up", "down", "left", "right", null
-// null means stop & wait for the next gesture
+📹 The game runs in the browser, communicating with the EC2-hosted API for gesture predictions.
+
+---
+
+## 🧠 ML Model Details
+
+- **Model**: LightGBM Classifier
+- **Input**: 63 features extracted using MediaPipe hand landmarks (x, y normalized, z raw)
+- **Label Mapping**:
+```python
+custom_label_map = {
+  "one": "up",
+  "two": "right",
+  "three2": "left",
+  "dislike": "down"
+}
 ```
+- **Output**: `up`, `down`, `left`, `right`, or `unknown`
+- **Preprocessing**: Normalization using saved transformation pipeline (`normalize.pkl`)
 
-You need to replace the current random label generation with your actual ML model API call. The function should:
-- Take the processed tensor (`processed_t`) as input
-- Call your deployed ML model's API
-- Return one of these labels: "up", "down", "left", "right", or null
+---
+
+## 🌳 Git Branching Strategy
+
+- `master`: Production-ready and deployed code
+- `research`: Model training, EDA, and experimentation
+- `Production`: FastAPI app, monitoring infrastructure, and Docker configs
+
+---
+
+## 🛠 Tech Stack
+
+- **Python 3.10**
+- **LightGBM** – ML model for gesture classification
+- **MediaPipe** – Landmark extraction from webcam frames
+- **FastAPI** – Model serving with REST API
+- **Docker & Docker Compose** – Containerized deployment
+- **Prometheus & Grafana** – Monitoring and observability
+- **AWS EC2** – Production deployment
+- **HTML/JS** – Maze game logic and UI
+
+---
 
 ## 🎮 Controls
 
-The game can be controlled through:
-- Hand gestures (via webcam)
-- Keyboard arrows (as fallback)
+You can control the maze game through:
+
+- 🖐️ Hand gestures (via webcam)
+- ⌨️ Keyboard arrow keys (fallback)
+
+---
+
+## 📦 API Endpoints
+
+### `POST /predict`
+
+- **Input**: Image frame from webcam (multipart form)
+- **Output**: JSON with predicted direction (`up`, `down`, `left`, `right`, `unknown`)
+
+### `GET /metrics`
+
+- Prometheus metrics like:
+  - `prediction_requests_total`
+  - `prediction_latency_seconds`
+
+---
+
+## 🧪 ML Model Workflow
+
+### 1. Preprocessing
+
+- MediaPipe extracts 21 landmarks (3D = 63 values)
+- Normalized (x, y), z remains raw
+
+### 2. Training
+
+- Model: `LightGBMClassifier`
+- Model and encoder saved as `.pkl` files
+
+---
+
+
+
+## 🐳 Run Locally with Docker Compose
+
+```bash
+git clone https://github.com/your-username/gesture-control-game.git
+cd gesture-control-game
+docker-compose up --build
+```
+
+- **API Docs**: http://localhost:8000/docs  
+- **Prometheus**: http://localhost:9090  
+- **Grafana**: http://localhost:3000  
+
+---
+
+## 🚀 Quick Game Launch
+
+1. Open `index.html` in your browser (or use Live Server in VS Code).
+2. Allow webcam access.
+3. Perform gestures to control the maze game.
+
+---
+
+## 📈 Monitoring (Prometheus & Grafana)
+
+- Track:
+  - API usage
+  - Inference latency
+  - Request volume
+- Easily customizable dashboards available in Grafana
+
+---
+
+## 🤝 Acknowledgments
+
+- HAGRID dataset creators
+- MediaPipe by Google
+- FastAPI, Docker, Prometheus, and Grafana communities
+
+---
+
