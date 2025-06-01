@@ -68,5 +68,5 @@ with mlflow.start_run(run_name='Logistic_Regression') as run:
     plt.savefig("confusion_matrix.png")
     mlflow.log_artifact("confusion_matrix.png")
 
-    download_url = mlflow.get_artifact_uri("model.pkl")
-    print(f"Model saved to: {download_url}")
+    # download_url = mlflow.get_artifact_uri("model.pkl")
+    # print(f"Model saved to: {download_url}")
