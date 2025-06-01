@@ -83,6 +83,8 @@ You can control the maze game through:
 ---
 
 ## 🧪 ML Model Workflow
+![MLflow](https://github.com/user-attachments/assets/dfb55842-9524-4302-98b4-777eedfdf2b5)
+
 
 ### 1. Preprocessing
 
@@ -121,12 +123,16 @@ docker-compose up --build
 ---
 
 ## 📈 Monitoring (Prometheus & Grafana)
+![Graffana Dashboard](https://github.com/user-attachments/assets/71aaca19-e1bf-4d3f-860b-819b177a3102)
 
 - Track:
   - API usage
   - Inference latency
   - Request volume
 - Easily customizable dashboards available in Grafana
+
+
+
 
 ---
 
