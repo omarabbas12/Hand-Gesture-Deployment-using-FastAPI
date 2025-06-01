@@ -47,12 +47,28 @@ jobs:
         debug: true
         script: |
           echo "SSH Connection successful"
-          docker stop hand-gesture-app || true
-          docker rm hand-gesture-app || true
-          docker rmi hand-gesture-app || true
-          cd ~/hand-gesture-repo || git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git ~/hand-gesture-repo
-          cd ~/hand-gesture-repo
-          git pull origin Production
-          docker build -t hand-gesture-app .
-          docker run -d --name hand-gesture-app -p 8000:8000 hand-gesture-app
+
+          # === Install Docker and Git ===
+          sudo yum update -y
+          sudo yum install -y docker git
+          sudo service docker start
+          sudo usermod -aG docker ec2-user
+
+          # === Ensure changes take effect ===
+          newgrp docker <<EONG
+            docker --version
+            git --version
+
+            docker stop hand-gesture-app || true
+            docker rm hand-gesture-app || true
+            docker rmi hand-gesture-app || true
+
+            cd ~/hand-gesture-repo || git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git ~/hand-gesture-repo
+            cd ~/hand-gesture-repo
+            git pull origin Production
+
+            docker build -t hand-gesture-app .
+            docker run -d --name hand-gesture-app -p 8000:8000 hand-gesture-app
+          EONG
+
 
