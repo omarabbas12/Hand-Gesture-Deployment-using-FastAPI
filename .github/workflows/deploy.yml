@@ -27,6 +27,14 @@ jobs:
     - name: Run Pytest
       run: pytest tests/
 
+    - name: Clean up to free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /opt/ghc
+        sudo rm -rf /usr/local/share/boost
+        sudo docker system prune -af
+
+
     - name:  Build Docker image
       run: docker build -t hand-gesture-app .
 
