@@ -2,8 +2,18 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 from serve.predict import predict_landmark_class
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title="Hand Landmarks Classification API",)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or replace "*" with your frontend domain for better security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Define input schema
 class LandmarkInput(BaseModel):
