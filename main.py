@@ -1,23 +1,9 @@
-from fastapi import FastAPI , Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 from serve.predict import predict_landmark_class
-from prometheus_fastapi_instrumentator import Instrumentator
-from fastapi.middleware.cors import CORSMiddleware
-
-# from prometheus_client import Counter, Histogram
-
 
 app = FastAPI(title="Hand Landmarks Classification API",)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Or restrict to GitHub Pages domain
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-Instrumentator().instrument(app).expose(app)
-
 
 # Define input schema
 class LandmarkInput(BaseModel):
@@ -55,4 +41,4 @@ def predict(input: LandmarkInput):
 # Optional: Only needed if you want to run from code instead of terminal
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
